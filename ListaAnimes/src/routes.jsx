@@ -15,7 +15,7 @@ const route = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/animeinfo/:id",
+        path: "animeinfo/:mal_id",
         element: <AnimeInfo />,
       },
       {

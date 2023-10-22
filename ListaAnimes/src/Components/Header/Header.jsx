@@ -31,7 +31,7 @@ export default function Header() {
           htmlFor="search"
           style={{ lineHeight: "100%", cursor: "pointer" }}
         >
-          <BiSearch size={20} />
+          <BiSearch size={20} color="#336699" />
         </label>
 
         <input type="text" id="search" placeholder="Pesquisar" />

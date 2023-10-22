@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const StyledHeader = styled.header`
   background-color: var(--background-dark);
   color: var(--text-color-dark);
-  width:100vw;
+  width:100%;
+  border-bottom:1px solid var(--border-color-dark);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,15 +47,15 @@ export const StyledUl = styled.ul`
 `;
 
 export const StyledSearchBar = styled.div`
-  background-color: white;
-  padding: 5px;
   display: flex;
   align-items: center;
-  color: var(--background-dark);
+  border-bottom: 2px solid var(--primary-color-dark);
 
   & input {
+    color: white;
+    background-color: transparent;
     padding: 5px;
-    font-size: 14px;
+    font-size: 16px;
     border: none;
     outline: none;
   }

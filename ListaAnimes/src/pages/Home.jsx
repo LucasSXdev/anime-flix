@@ -1,27 +1,30 @@
 import { useEffect, useState } from "react";
 import api from "../services/Api";
+import { Link } from "react-router-dom";
+import Banner from "../Components/Banner/Banner";
 
 export default function Home() {
   const [animes, setAnimes] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${api}?page=${currentPage}`);
+      const response = await fetch(`${api}/top/anime`);
       const dataJason = await response.json();
       setAnimes(dataJason.data);
-      console.log(dataJason);
+      setLoading(false);
     };
 
     fetchData();
-  }, [setAnimes, currentPage]);
+  }, []);
 
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => (prevPage += 1));
-  };
+  if (loading) {
+    return <h1>Carregando animes...</h1>;
+  }
 
   return (
     <main>
+      <Banner />
       <ul
         style={{
           display: "flex",
@@ -41,18 +44,17 @@ export default function Home() {
               key={anime.mal_id}
             >
               <p>{anime.title}</p>
-              <img
-                style={{ width: "100%", height: "350px", objectFit: "cover" }}
-                src={anime.images.jpg.image_url}
-                alt={anime.title}
-              />
-              <a href={anime.episode_id}>assistir</a>
+              <Link to={`animeinfo/${anime.mal_id}`}>
+                <img
+                  style={{ width: "100%", height: "350px", objectFit: "cover" }}
+                  src={anime.images.jpg.image_url}
+                  alt={anime.title}
+                />
+              </Link>
             </li>
           );
         })}
       </ul>
-
-      <button onClick={handleNextPage}>next</button>
     </main>
   );
 }
