@@ -1,60 +1,78 @@
 import { useEffect, useState } from "react";
 import api from "../services/Api";
 import { Link } from "react-router-dom";
-import Banner from "../Components/Banner/Banner";
+import SliderAnime from "../Components/Banner/SliderAnime";
+import { StyledSwiperSlide } from "../Components/Banner/StyledBanner";
 
 export default function Home() {
-  const [animes, setAnimes] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [anime, setAnime] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`${api}/top/anime`);
-      const dataJason = await response.json();
-      setAnimes(dataJason.data);
-      setLoading(false);
+    const fetchImgUrl = async () => {
+      try {
+        const response = await fetch(`${api}/anime`);
+        const responseJson = await response.json();
+        setAnime(responseJson.data);
+        console.log(responseJson);
+      } catch (error) {
+        console.error("Erro ao buscar dados da API:", error);
+      }
     };
 
-    fetchData();
+    fetchImgUrl();
   }, []);
 
-  if (loading) {
-    return <h1>Carregando animes...</h1>;
+  function filterCategory(category) {
+    return anime.filter((img) =>
+      img.genres.some((genre) => genre.name === category)
+    );
   }
 
   return (
-    <main>
-      <Banner />
-      <ul
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "5rem",
-        }}
-      >
-        {animes.map((anime) => {
-          return (
-            <li
-              style={{
-                width: "250px",
+    <>
+      <SliderAnime category="Mais populares">
+        {anime.map((img) => (
+          <StyledSwiperSlide key={img.mal_id}>
+            <Link to={`animeinfo/${img.mal_id}`}>
+              <img src={img.images.jpg.large_image_url} alt={img.title} />
+              <p>{img.title}</p>
+            </Link>
+          </StyledSwiperSlide>
+        ))}
+      </SliderAnime>
 
-                listStyle: "none",
-                display: "block",
-              }}
-              key={anime.mal_id}
-            >
-              <p>{anime.title}</p>
-              <Link to={`animeinfo/${anime.mal_id}`}>
-                <img
-                  style={{ width: "100%", height: "350px", objectFit: "cover" }}
-                  src={anime.images.jpg.image_url}
-                  alt={anime.title}
-                />
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </main>
+      <SliderAnime category="Comédia">
+        {filterCategory("Comedy").map((img) => (
+          <StyledSwiperSlide key={img.mal_id}>
+            <Link to={`animeinfo/${img.mal_id}`}>
+              <img src={img.images.jpg.large_image_url} alt={img.title} />
+              <p>{img.title}</p>
+            </Link>
+          </StyledSwiperSlide>
+        ))}
+      </SliderAnime>
+
+      <SliderAnime category="Ação">
+        {filterCategory("Action").map((img) => (
+          <StyledSwiperSlide key={img.mal_id}>
+            <Link to={`animeinfo/${img.mal_id}`}>
+              <img src={img.images.jpg.large_image_url} alt={img.title} />
+              <p>{img.title}</p>
+            </Link>
+          </StyledSwiperSlide>
+        ))}
+      </SliderAnime>
+
+      <SliderAnime category="Fantasia">
+        {filterCategory("Romance").map((img) => (
+          <StyledSwiperSlide key={img.mal_id}>
+            <Link to={`animeinfo/${img.mal_id}`}>
+              <img src={img.images.jpg.large_image_url} alt={img.title} />
+              <p>{img.title}</p>
+            </Link>
+          </StyledSwiperSlide>
+        ))}
+      </SliderAnime>
+    </>
   );
 }

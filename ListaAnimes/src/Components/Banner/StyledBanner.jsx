@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const SwiperContainer = styled.div`
   background-color: var(--background-dark);
-  padding: 2rem;
+  padding: 20px 2rem 0;
   position: relative;
   color: var(--text-color-dark);
 `;

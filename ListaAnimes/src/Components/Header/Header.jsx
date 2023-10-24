@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import { StyledHeader, StyledUl, StyledSearchBar } from "./Header.syled";
+import { StyledHeader, StyledUl, StyledSearchBar } from "./Header.styled";
 import { BiCaretDown, BiSearch } from "react-icons/bi";
 
 export default function Header() {
   return (
     <StyledHeader>
       <h1>AnimeFlix</h1>
-
       <nav>
         <StyledUl>
           <li>

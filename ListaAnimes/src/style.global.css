@@ -13,3 +13,7 @@
   --primary-color-dark: #336699;
   --border-color-dark: #333333;
 }
+
+body {
+  width: 100vw;
+}

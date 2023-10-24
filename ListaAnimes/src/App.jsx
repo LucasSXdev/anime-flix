@@ -23,8 +23,8 @@ export default function App() {
   };
 
   return (
-    <main>
+    <>
       <RouterProvider router={route} />
-    </main>
+    </>
   );
 }
