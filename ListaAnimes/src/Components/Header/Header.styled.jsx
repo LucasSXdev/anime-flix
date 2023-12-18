@@ -8,7 +8,7 @@ export const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 2rem;
+  padding: 20px 4rem;
 `;
 
 export const StyledUl = styled.ul`
@@ -56,5 +56,21 @@ export const StyledSearchBar = styled.div`
     font-size: 16px;
     border: none;
     outline: none;
+  }
+`;
+
+export const StyledDropdown = styled.div`
+  position: absolute;
+  width: 150px;
+  z-index: 3;
+  display: block;
+  display: ${(props) => (props.isOpen ? "block" : "none")};
+
+  &:hover {
+    display: block;
+  }
+
+  & a {
+    background: var(--background-dark);
   }
 `;

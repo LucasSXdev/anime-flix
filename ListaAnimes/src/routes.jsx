@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Rootlayout";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import News from "./pages/News";
 import Manga from "./pages/Manga";
 import AnimeInfo from "./pages/AnimeInfo";
