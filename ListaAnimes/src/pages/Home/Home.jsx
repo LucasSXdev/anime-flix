@@ -31,10 +31,10 @@ export default function Home() {
     <Container>
       {animes.map((anime) => (
         <Card key={anime.mal_id}>
+          <h2>{anime.title}</h2>
           <Link to={`/animeinfo/${anime.mal_id}`}>
-            <p>{anime.title}</p>
+            <img src={anime.images.jpg.image_url} alt={anime.title} />
           </Link>
-          <img src={anime.images.jpg.image_url} alt={anime.title} />
         </Card>
       ))}
     </Container>

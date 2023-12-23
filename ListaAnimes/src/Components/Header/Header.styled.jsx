@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledHeader = styled.header`
   background: var(--background-dark);
   color: var(--text-color-dark);
-  width: 100%;
+  width: 100vw;
   border-bottom: 1px solid var(--border-color-dark);
   display: flex;
   justify-content: space-between;
