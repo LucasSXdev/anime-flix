@@ -13,7 +13,6 @@ export default function Home() {
         const response = await fetch(`${api}/top/anime?filter=bypopularity`);
         const responseJson = await response.json();
         setAnimes(responseJson.data);
-        console.log(responseJson.data);
         setLoad(false);
       } catch (error) {
         console.error("Erro ao buscar dados da API:", error);
