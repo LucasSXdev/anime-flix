@@ -19,6 +19,6 @@ export const Description = styled.div`
   padding: 10px;
 
   p {
-    font-size: 18px;
+    font-size: 16px;
   }
 `;

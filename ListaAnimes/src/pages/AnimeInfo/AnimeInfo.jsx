@@ -22,9 +22,25 @@ export default function AnimeInfo() {
     <Container>
       <Description>
         <h1>{animes.title}</h1>
+        <strong>Sinopse:</strong>
         <p>{animes.synopsis}</p>
+        <strong>Nota Média:{animes.score}</strong>
+        <strong>
+          Gêneros:
+          <ul>
+            {animes.genres.map((genre) => {
+              return (
+                <li key={genre.mal_id}>
+                  <p>{genre.name}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </strong>
       </Description>
-      <img src={animes.images.jpg.image_url} alt="" />
+      {animes.images && animes.images.jpg && (
+        <img src={animes.images.jpg.large_image_url} alt={animes.title} />
+      )}
     </Container>
   );
 }
