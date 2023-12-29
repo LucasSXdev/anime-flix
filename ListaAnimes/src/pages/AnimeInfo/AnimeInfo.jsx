@@ -13,6 +13,7 @@ export default function AnimeInfo() {
   const { mal_id } = useParams();
   const [animes, setAnimes] = useState({});
   const [characters, setCharacters] = useState([]);
+  const [numberCharacters, setNumbercharacters] = useState(20);
 
   useEffect(() => {
     const fetchAnimes = async () => {
@@ -63,7 +64,7 @@ export default function AnimeInfo() {
       <ContainerCharacters>
         <h2>Lista de personagens</h2>
         <ul>
-          {characters.slice(0, 20).map((character) => {
+          {characters.slice(0, numberCharacters).map((character) => {
             return (
               <li key={character.mal_id}>
                 <strong>{character.character.name}</strong>
@@ -71,11 +72,19 @@ export default function AnimeInfo() {
                   src={character.character?.images?.jpg?.image_url}
                   alt={character.character.name}
                 />
-                <p>{character.character.about}</p>
               </li>
             );
           })}
         </ul>
+        <button
+          onClick={() =>
+            setNumPersonagensRenderizados(
+              numberCharacters === 20 ? charactersOrdenados.length : 20
+            )
+          }
+        >
+          {numberCharacters === 20 ? "Ver mais" : "Ver menos"}
+        </button>
       </ContainerCharacters>
     </>
   );
