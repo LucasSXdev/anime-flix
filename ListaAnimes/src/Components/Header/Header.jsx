@@ -1,53 +1,50 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   StyledHeader,
   StyledUl,
   StyledSearchBar,
-  StyledDropdown,
+  ButtonHeader,
 } from "./Header.styled";
-import { BiCaretDown, BiSearch } from "react-icons/bi";
-import { useState } from "react";
+import { BiSearch } from "react-icons/bi";
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  if (location.pathname === "/") {
+    return (
+      <StyledHeader>
+        <h1>AnimeFlix</h1>
+        <nav>
+          <StyledUl>
+            <li>
+              <Link to="">Favoritos</Link>
+            </li>
+            <li>
+              <Link to="/manga">Mangás</Link>
+            </li>
+          </StyledUl>
+        </nav>
+        <StyledSearchBar>
+          <label
+            htmlFor="search"
+            style={{ lineHeight: "100%", cursor: "pointer" }}
+          >
+            <BiSearch size={20} color="#336699" />
+          </label>
 
-  return (
-    <StyledHeader>
-      <h1>AnimeFlix</h1>
-      <nav>
-        <StyledUl>
-          <li>
-            <Link to="/">Início</Link>
-          </li>
-          <li>
-            <Link to="/manga">Mangás</Link>
-          </li>
-          <li onClick={() => setIsOpen(!isOpen)}>
-            <Link>
-              Categorias <BiCaretDown />
-            </Link>
-            <StyledDropdown isOpen={isOpen}>
-              <a>Ação</a>
-              <a>Comédia</a>
-              <a>Fantasia</a>
-            </StyledDropdown>
-          </li>
-          <li>
-            <Link to="/news">Notícias</Link>
-          </li>
-        </StyledUl>
-      </nav>
-
-      <StyledSearchBar>
-        <label
-          htmlFor="search"
-          style={{ lineHeight: "100%", cursor: "pointer" }}
-        >
-          <BiSearch size={20} color="#336699" />
-        </label>
-
-        <input type="text" id="search" placeholder="Pesquisar" />
-      </StyledSearchBar>
-    </StyledHeader>
-  );
+          <input type="text" id="search" placeholder="Pesquisar" />
+        </StyledSearchBar>
+      </StyledHeader>
+    );
+  } else {
+    return (
+      <StyledHeader>
+        <Link to="/">
+          <h1>AnimeFlix</h1>
+        </Link>
+        <ButtonHeader>
+          <Link to="/favoritos">Favoritos</Link>
+        </ButtonHeader>
+      </StyledHeader>
+    );
+  }
 }

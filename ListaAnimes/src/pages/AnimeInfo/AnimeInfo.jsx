@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../services/Api";
-import { useParams } from "react-router-dom";
+import { json, useParams } from "react-router-dom";
 import {
   AreaButtons,
   Container,
@@ -8,6 +8,7 @@ import {
   Description,
   StyledUl,
 } from "./Styles";
+import Header from "../../Components/Header/Header";
 
 export default function AnimeInfo() {
   const { mal_id } = useParams();
@@ -34,8 +35,17 @@ export default function AnimeInfo() {
     fetchCharacters();
   }, [mal_id]);
 
+  const addAnime = () => {
+    const listaAnimes = localStorage.getItem("Anime");
+    let animesSalvos = JSON.parse(listaAnimes) || [];
+    animesSalvos.push(animes);
+    localStorage.setItem("anime", JSON.stringify(animesSalvos));
+    alert("anime salvo com sucesso");
+  };
+
   return (
     <>
+      <Header />
       <Container>
         <Description>
           <h1>{animes.title}</h1>
@@ -48,7 +58,7 @@ export default function AnimeInfo() {
             })}
           </StyledUl>
           <AreaButtons>
-            <button>Salvar</button>
+            <button onClick={addAnime}>Salvar</button>
             <a
               target="blank"
               href={`https://youtube.com/results?search_query=${animes.title} trailer}`}
@@ -77,13 +87,13 @@ export default function AnimeInfo() {
           })}
         </ul>
         <button
-          onClick={() =>
-            setNumPersonagensRenderizados(
-              numberCharacters === 20 ? charactersOrdenados.length : 20
-            )
-          }
+          onClick={() => {
+            numberCharacters === 20
+              ? setNumbercharacters(40)
+              : setNumbercharacters(20);
+          }}
         >
-          {numberCharacters === 20 ? "Ver mais" : "Ver menos"}
+          {numberCharacters == 20 ? "Ver mais" : "Ver menos"}
         </button>
       </ContainerCharacters>
     </>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/Api";
 import { Link } from "react-router-dom";
+import Header from "../../Components/Header/Header";
 import { Card, Container } from "./styles";
 
 export default function Home() {
@@ -27,15 +28,18 @@ export default function Home() {
   }
 
   return (
-    <Container>
-      {animes.map((anime) => (
-        <Card key={anime.mal_id}>
-          <h2>{anime.title}</h2>
-          <Link to={`/animeinfo/${anime.mal_id}`}>
-            <img src={anime.images.jpg.image_url} alt={anime.title} />
-          </Link>
-        </Card>
-      ))}
-    </Container>
+    <>
+      <Header />
+      <Container>
+        {animes.map((anime) => (
+          <Card key={anime.mal_id}>
+            <h2>{anime.title}</h2>
+            <Link to={`/animeinfo/${anime.mal_id}`}>
+              <img src={anime.images.jpg.image_url} alt={anime.title} />
+            </Link>
+          </Card>
+        ))}
+      </Container>
+    </>
   );
 }

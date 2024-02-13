@@ -9,6 +9,10 @@ export const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 20px 4rem;
+
+  a {
+    color: var(--text-color-dark);
+  }
 `;
 
 export const StyledUl = styled.ul`
@@ -59,18 +63,20 @@ export const StyledSearchBar = styled.div`
   }
 `;
 
-export const StyledDropdown = styled.div`
-  position: absolute;
+export const ButtonHeader = styled.button`
   width: 150px;
-  z-index: 3;
-  display: block;
-  display: ${(props) => (props.isOpen ? "block" : "none")};
-
-  &:hover {
-    display: block;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background: var(--text-color-dark);
+  transition: 0.3s ease-in-out;
+  a {
+    color: var(--background-dark);
+    font-weight: bold;
   }
 
-  & a {
-    background: var(--background-dark);
+  &:hover {
+    background: var(--primary-color-dark);
+    transform: scale(1.1);
   }
 `;

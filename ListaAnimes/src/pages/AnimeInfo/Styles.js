@@ -89,4 +89,14 @@ export const ContainerCharacters = styled.div`
       }
     }
   }
+
+  button {
+    width: 150px;
+    padding: 5px;
+    margin-left: 15px;
+    font-size: 24px;
+    border: 2px solid;
+    background: none;
+    cursor: pointer;
+  }
 `;
