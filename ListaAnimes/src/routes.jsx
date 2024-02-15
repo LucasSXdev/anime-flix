@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Rootlayout";
 import Home from "./pages/Home/Home";
-import News from "./pages/News";
 import Manga from "./pages/Manga";
 import AnimeInfo from "./pages/AnimeInfo/AnimeInfo";
+import Favoritos from "./pages/Favoritos";
 
 const route = createBrowserRouter([
   {
@@ -19,8 +19,8 @@ const route = createBrowserRouter([
         element: <AnimeInfo />,
       },
       {
-        path: "news",
-        element: <News />,
+        path: "favoritos",
+        element: <Favoritos />,
       },
       {
         path: "manga",

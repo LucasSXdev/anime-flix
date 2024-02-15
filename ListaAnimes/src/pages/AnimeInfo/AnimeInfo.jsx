@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../services/Api";
-import { json, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   AreaButtons,
   Container,
@@ -38,8 +38,18 @@ export default function AnimeInfo() {
   const addAnime = () => {
     const listaAnimes = localStorage.getItem("Anime");
     let animesSalvos = JSON.parse(listaAnimes) || [];
+
+    const hasAnime = animesSalvos.some(
+      (animeSalvo) => animeSalvo.mal_id === animes.mal_id
+    );
+
+    if (hasAnime) {
+      alert("esse anime já foi adicionado");
+      return;
+    }
+
     animesSalvos.push(animes);
-    localStorage.setItem("anime", JSON.stringify(animesSalvos));
+    localStorage.setItem("Anime", JSON.stringify(animesSalvos));
     alert("anime salvo com sucesso");
   };
 

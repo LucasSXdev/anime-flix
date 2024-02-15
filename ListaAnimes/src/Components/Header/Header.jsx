@@ -16,7 +16,7 @@ export default function Header() {
         <nav>
           <StyledUl>
             <li>
-              <Link to="">Favoritos</Link>
+              <Link to="/favoritos">Favoritos</Link>
             </li>
             <li>
               <Link to="/manga">Mangás</Link>
