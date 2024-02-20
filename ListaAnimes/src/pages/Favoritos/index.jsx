@@ -8,6 +8,16 @@ export default function Favoritos() {
     setAnimes(JSON.parse(listaAnimes) || []);
   }, []);
 
+  const deleteAnime = (id) => {
+    let updateAnimes = anime.filter((anime) => anime.mal_id !== id);
+    setAnimes(updateAnimes);
+    localStorage.setItem("Anime", JSON.stringify(updateAnimes));
+  };
+
+  if (anime.length == 0) {
+    return <h2>Você não possui nenhum anime na lista :(</h2>;
+  }
+
   return (
     <>
       <h1>Meus animes</h1>
@@ -18,7 +28,9 @@ export default function Favoritos() {
               <span>{anime.title}</span>
               <div>
                 <Link to={`/animeinfo/${anime.mal_id}`}>Detalhes do filme</Link>
-                <button>Excluir filme</button>
+                <button onClick={() => deleteAnime(anime.mal_id)}>
+                  Excluir filme
+                </button>
               </div>
             </li>
           );
