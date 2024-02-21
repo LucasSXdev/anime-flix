@@ -20,14 +20,12 @@ export default function AnimeInfo() {
     const fetchAnimes = async () => {
       const response = await fetch(`${api}/anime/${mal_id}`);
       const responseJson = await response.json();
-      console.log(responseJson.data);
       setAnimes(responseJson.data);
     };
 
     const fetchCharacters = async () => {
       const response = await fetch(`${api}/anime/${mal_id}/characters`);
       const responseJson = await response.json();
-      console.log(responseJson.data.slice(0, 10));
       setCharacters(responseJson.data);
     };
 
